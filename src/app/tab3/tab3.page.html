@@ -6,4 +6,13 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+    <ion-list>
+        <ion-item *ngFor="let chat of chats">
+            <div #itemContent>
+                <p>{{chat.name}}</p>
+              </div>
+          <ion-img class="ion-text-right" width="20" height="20" src="./../assets/user.png"></ion-img>
+        </ion-item>
+      </ion-list>
+</ion-content>

@@ -1,9 +1,42 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Two
+      Sell your card
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <!-- Inputs with labels -->
+  <form (ngSubmit)="addCard()">
+  <ion-list>
+    <ion-item>
+        <ion-label position="stacked">Your Name</ion-label>
+        <ion-input type="text" required="true" [(ngModel)]="card.name" name="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Remaining days on card</ion-label>
+      <ion-input type="number" required="true" [(ngModel)]="card.days" name="days"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="stacked">Price in Dollar</ion-label>
+        <ion-input type="number" required="true" [(ngModel)]="card.price" name="price"></ion-input>
+      </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Your Neighborhood</ion-label>
+      <ion-input type="text" required="true" [(ngModel)]="card.neighborhood" name="neighborhood"></ion-input>
+    </ion-item>
+  </ion-list>
+
+
+  <ion-list>
+      <ion-item *ngFor="let entry of paymentMethods">
+        <ion-checkbox></ion-checkbox>
+        <ion-img slot="end" [src]="entry.path"></ion-img>
+        <ion-label>{{entry.val}}</ion-label>
+      </ion-item>
+    </ion-list>
+  
+    <ion-button type="submit" expand="full">Submit</ion-button>
+  </form>
+</ion-content>

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { MetrocardsService } from '../services/metrocards.service';
 
-
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { CommandName } from 'protractor';
 
 @Injectable({
   providedIn: 'root'
@@ -6,20 +7,20 @@ import { Injectable } from '@angular/core';
 export class MetrocardsService {
   metroCards = [
         {
-            id: 1,
-            seller: "Gina Smith",
+            name: "Gina Smith",
             days: 13,
+            neighborhood: "Queens",
             price: 39,
         },
         {
-          id: 2,
-          seller: "John Doe",
+          name: "John Doe",
           days: 5,
+          neighborhood: "Williamsburg",
           price: 15,
         },
         {
-          id: 3,
-          seller: "Lucas Will",
+          name: "Lucas Will",
+          neighborhood: "Crown Heights",
           days: 20,
           price: 60,
         }
@@ -30,5 +31,16 @@ export class MetrocardsService {
   getCards(){
     console.log(this.metroCards);
     return this.metroCards;
+  }
+
+  addCard(card){
+    this.metroCards.push(
+      {
+        name: card.name,
+        days: card.days,
+        neighborhood: card.neighborhood,
+        price: card.price,
+      }
+    )
   }
 }
