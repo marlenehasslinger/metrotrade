@@ -8,8 +8,8 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let card of cards">
-      <ion-img width="20" height="20" src="./../assets/metrocard.png"></ion-img>
+    <ion-item (click)="goWithData(card.name)" *ngFor="let card of cards">
+      <ion-img width="20" height="20" src="assets/metrocard.png"></ion-img>
       <div #itemContent>
         <p class="ion-text-right">${{card.price}}</p>
         <p class="ion-text-right">{{card.days}} days remaining</p>

@@ -8,14 +8,20 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
-  card = {};
+  card = {
+    name: "",
+    days: "",
+    price: "",
+    neighborhood: ""
+  }
+
   cardForm;
   public paymentMethods = [
-    { val: 'Venmo', isChecked: true, path: './../assets/venmo.png'},
-    { val: 'PayPal', isChecked: false, path: './../assets/paypal.png' },
-    { val: 'Zelle', isChecked: false, path: './../assets/zelle.png' },
-    { val: 'Apple Pay', isChecked: false, path: './../assets/apple.png' },
-    { val: 'Cash', isChecked: false, path: './../assets/metrocard.png' } 
+    { val: 'Venmo', path: 'assets/venmo.png'},
+    { val: 'PayPal', path: 'assets/paypal.png' },
+    { val: 'Zelle', path: 'assets/zelle.png' },
+    { val: 'Apple Pay', path: 'assets/apple.png' },
+    { val: 'Cash', path: 'assets/cash.png' } 
   ];
 
   constructor(private metroCardService: MetrocardsService, public toastController: ToastController) {
@@ -32,7 +38,8 @@ export class Tab2Page {
   async presentToast() {
     const toast = await this.toastController.create({
       message: 'Your Card has been posted.',
-      duration: 3000
+      duration: 3000,
+      position: "top"
     });
     toast.present();
   }
