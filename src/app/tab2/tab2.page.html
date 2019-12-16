@@ -8,23 +8,23 @@
 
 <ion-content>
   <!-- Inputs with labels -->
-  <form (ngSubmit)="addCard()">
+  <form [formGroup]="myForm">
   <ion-list>
     <ion-item>
         <ion-label position="stacked">Your Name</ion-label>
-        <ion-input type="text" required="true" [(ngModel)]="card.name" name="name"></ion-input>
+        <ion-input formControlName="name" type="text" required="true" name="name"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Remaining days on card</ion-label>
-      <ion-input type="number" required="true" [(ngModel)]="card.days" name="days"></ion-input>
+      <ion-input formControlName="days" type="number" required="true" name="days"></ion-input>
     </ion-item>
     <ion-item>
         <ion-label position="stacked">Price in Dollar</ion-label>
-        <ion-input type="number" required="true" [(ngModel)]="card.price" name="price"></ion-input>
+        <ion-input formControlName="price" type="number" required="true" name="price"></ion-input>
       </ion-item>
     <ion-item>
       <ion-label position="stacked">Your Neighborhood</ion-label>
-      <ion-input type="text" required="true" [(ngModel)]="card.neighborhood" name="neighborhood"></ion-input>
+      <ion-input formControlName="neighborhood" type="text" required="true" name="neighborhood"></ion-input>
     </ion-item>
   </ion-list>
 
@@ -36,7 +36,9 @@
         <ion-label>{{entry.val}}</ion-label>
       </ion-item>
     </ion-list>
-  
-    <ion-button type="submit" expand="full">Submit</ion-button>
+    <div class="danger" *ngIf="name.invalid || price.invalid || days.invalid || neighborhood.invalid">
+        Please fill out all input fields above.
+      </div>
+    <ion-button (click)="addCard()" expand="full">Submit</ion-button>
   </form>
 </ion-content>

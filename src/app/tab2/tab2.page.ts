@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MetrocardsService } from '../services/metrocards.service';
 import { ToastController } from '@ionic/angular';
 import { Vibration } from '@ionic-native/vibration/ngx';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-tab2',
@@ -9,6 +10,7 @@ import { Vibration } from '@ionic-native/vibration/ngx';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
+  public myForm: FormGroup;
   card = {
     name: "",
     days: "",
@@ -25,16 +27,36 @@ export class Tab2Page {
     { val: 'Cash', path: 'assets/cash.png' } 
   ];
 
-  constructor(private vibration: Vibration, private metroCardService: MetrocardsService, public toastController: ToastController) {
+  constructor(public formBuilder: FormBuilder, private vibration: Vibration, private metroCardService: MetrocardsService, public toastController: ToastController) {
+      this.myForm = this.formBuilder.group({
+        name: ['', Validators.required],
+        days: ['', Validators.required],
+        price: ['', Validators.required],
+        neighborhood: ['', Validators.required],
+        });
+  }
 
+  get name() {
+    return this.myForm.get('name');
+  }
+  get days() {
+    return this.myForm.get('days');
+  }
+  get price() {
+    return this.myForm.get('price');
+  }
+  get neighborhood() {
+    return this.myForm.get('neighborhood');
   }
 
   addCard(){
-    this.vibration.vibrate(1000);
-    console.log(this.card);
-    this.metroCardService.addCard(this.card);
-    this.presentToast();
-    this.clearForm();
+    if(this.myForm.valid){
+      this.vibration.vibrate(1000);
+      console.log(this.myForm.value);
+      this.metroCardService.addCard(this.myForm.value);
+      this.presentToast();
+      this.myForm.reset();
+    }
   }
 
   async presentToast() {
