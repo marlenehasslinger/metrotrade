@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MetrocardsService } from '../services/metrocards.service';
 import { ToastController } from '@ionic/angular';
+import { Vibration } from '@ionic-native/vibration/ngx';
 
 @Component({
   selector: 'app-tab2',
@@ -24,11 +25,12 @@ export class Tab2Page {
     { val: 'Cash', path: 'assets/cash.png' } 
   ];
 
-  constructor(private metroCardService: MetrocardsService, public toastController: ToastController) {
+  constructor(private vibration: Vibration, private metroCardService: MetrocardsService, public toastController: ToastController) {
 
   }
 
   addCard(){
+    this.vibration.vibrate(1000);
     console.log(this.card);
     this.metroCardService.addCard(this.card);
     this.presentToast();

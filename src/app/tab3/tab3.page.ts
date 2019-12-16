@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MetrocardsService } from '../services/metrocards.service';
+import { ChatService } from '../services/chat.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,10 +10,10 @@ import { Router } from '@angular/router';
 export class Tab3Page {
   chats;
 
-  constructor(private metroCardService: MetrocardsService, private router: Router) {}
+  constructor(private chatService: ChatService, private router: Router) {}
 
   ngOnInit() {
-    this.chats = this.metroCardService.getCards();
+    this.chats = this.chatService.getChats();
     console.log(`OnInit`);
     console.log(this.chats);
   }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MetrocardsService } from '../services/metrocards.service';
+import { ChatService } from '../services/chat.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 export class Tab1Page {
   cards;
 
-  constructor(private metroCardService: MetrocardsService, private router: Router) {}
+  constructor(private metroCardService: MetrocardsService, private router: Router, private chatService: ChatService) {}
 
   ngOnInit() {
     this.cards = this.metroCardService.getCards();
@@ -19,6 +20,7 @@ export class Tab1Page {
   }
 
   goWithData(name) {
+    this.chatService.addChat(name)
     var route = '/chat/'+name;
     this.router.navigateByUrl(route);
   }

@@ -1,5 +1,7 @@
 {
   "name": "metrotrade",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
